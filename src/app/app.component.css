@@ -1,0 +1,14 @@
+.side-nav {
+  position: fixed;
+  top:63px;
+  background-color:rgba(0,0,0,.1);
+}
+
+.mat-sidenav-container{
+  height: 100%;
+}
+.mat-toolbar{
+  position: sticky;
+  top: 0;
+
+}
