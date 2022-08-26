@@ -1,0 +1,47 @@
+
+<mat-table *ngIf="this.dataSource.data.length > 0" [dataSource]="dataSource">
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{this.datePipe.transform(element.date,'dd/MM/yyyy')}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="personne">
+    <mat-header-cell *matHeaderCellDef>Personnes</mat-header-cell>
+    <mat-cell *matCellDef="let element" class="line-break">
+      <span *ngFor="let personne of element.personnes"> {{personne.prenom}} {{personne.nom}} </span> </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ville">
+    <mat-header-cell *matHeaderCellDef>Ville</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.ville}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="note">
+    <mat-header-cell *matHeaderCellDef>Note</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.note}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef class="action">Action</mat-header-cell>
+    <mat-cell *matCellDef="let element" class="action">
+      <button value="{{element.id}}" routerLink="/consulterRencontreDetail/{{element.id}}"> <mat-icon color="accent" >find_in_page</mat-icon> </button>
+      <button value="{{element.id}}" (click)="openDialog(element.id) "> <mat-icon color="warn">delete</mat-icon> </button>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="['personne', 'date', 'ville', 'note', 'action']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['personne', 'date', 'ville', 'note', 'action']"></mat-row>
+
+</mat-table>
+
+<div *ngIf="this.dataSource.data.length == 0">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Aucune rencontre trouvée </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" routerLink="/ajouterRencontre"> Ajouter une rencontre </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

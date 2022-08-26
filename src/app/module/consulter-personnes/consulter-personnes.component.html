@@ -1,0 +1,47 @@
+
+<mat-table *ngIf="this.dataSource.data.length > 0" [dataSource]="dataSource">
+
+  <ng-container matColumnDef="prenom">
+    <mat-header-cell *matHeaderCellDef>Prénom</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.prenom}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nom">
+    <mat-header-cell *matHeaderCellDef>Nom</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nom}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <mat-header-cell *matHeaderCellDef>Âge</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.age}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="signeAstrologique">
+    <mat-header-cell *matHeaderCellDef>Signe astrologique</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.signeAstrologique}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef class="action">Action</mat-header-cell>
+    <mat-cell *matCellDef="let element" class="action">
+      <button value="{{element.id}}" routerLink="/consulterPersonneDetail/{{element.id}}"> <mat-icon color="accent" >find_in_page</mat-icon> </button>
+      <button value="{{element.id}}" (click)="openDialog(element.id) "> <mat-icon color="warn">delete</mat-icon> </button>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="['nom', 'prenom', 'age', 'signeAstrologique', 'action']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['nom', 'prenom', 'age', 'signeAstrologique', 'action']"></mat-row>
+
+</mat-table>
+
+<div *ngIf="this.dataSource.data.length == 0">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Aucune personne trouvée </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" routerLink="/ajouterPersonne"> Ajouter une personne </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,68 @@
+<nav class="sidebar">
+    <mat-accordion displayMode="flat" hideToggle="false">
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon color="accent">group</mat-icon>
+            Gestion des personnes
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list role="list">
+          <mat-list-item class="item" routerLink="/consulterPersonnes">
+            <mat-icon color="accent">visibility</mat-icon>
+            Consulter les personnes
+          </mat-list-item>
+          <mat-list-item class="item" routerLink="/ajouterPersonne">
+            <mat-icon color="accent">person_add</mat-icon>
+            Ajouter une personne
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel expanded="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon color="accent">king_bed</mat-icon>
+            Gestion des Rencontres
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list role="list">
+          <mat-list-item class="item" routerLink="/consulterRencontres">
+            <mat-icon color="accent">visibility</mat-icon>
+            Consulter les rencontres
+          </mat-list-item>
+          <mat-list-item class="item" routerLink="/ajouterRencontre">
+            <mat-icon color="accent">favorite</mat-icon>
+            Ajouter une rencontre
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel expanded="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon color="accent">query_stats</mat-icon>
+            Statistiques
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list role="list">
+          <mat-list-item class="item">
+            <mat-icon color="accent">military_tech</mat-icon>
+            Badges
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel expanded="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon color="accent">share</mat-icon>
+            Gestion des Amis
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list role="list">
+          <mat-list-item class="item">
+            <mat-icon color="accent">person_add</mat-icon>
+            Ajouter un ami
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+</nav>

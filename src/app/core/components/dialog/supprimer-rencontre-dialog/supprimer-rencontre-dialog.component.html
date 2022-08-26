@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Attention</h1>
+<div mat-dialog-content>
+  <p>Êtes-vous certain(e) de vouloir supprimer cette rencontre ?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Non</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial (click)="supprimerEvent($event)">Oui</button>
+</div>

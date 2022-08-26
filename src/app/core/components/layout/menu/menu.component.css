@@ -1,0 +1,16 @@
+@import "@material/theme/_color-palette.import.scss";
+.mat-icon{
+  padding:10px;
+}
+.item:hover{
+  background-color: rgba(0,0,0,.1);
+  color: #ff4081;
+}
+
+.item{
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.mat-drawer-container{
+}

@@ -1,0 +1,43 @@
+.mat-header-cell{
+  color: white;
+  background: #ff4081 !important;
+  text-align: center !important;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.mat-table{
+  margin: 30px;
+  text-align: center;
+  border: solid 1px rgba(0,0,0,.12);
+}
+
+.line-break {
+  white-space: pre-wrap;
+}
+
+.mat-icon{
+  margin: auto;
+}
+
+button{
+  border: 0px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+.mat-card{
+  width: 45%;
+  background-color: rgba(255, 64, 129,0.05);
+  margin: 15px !important;
+}
+
+.mat-card-title{
+  color: #ff4081;
+  text-align: center;
+}
+
+.mat-card-actions {
+  text-align: center;
+}

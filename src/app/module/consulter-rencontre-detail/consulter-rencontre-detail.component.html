@@ -1,0 +1,75 @@
+<div style="display: flex">
+  <mat-card style="width: 90%">
+    <mat-card-title> Consulter une rencontre</mat-card-title>
+    <mat-card-content>
+      <div style="display: flex">
+        <mat-card>
+          <mat-card-title> Personne(s) </mat-card-title>
+          <mat-card-content>
+            <div *ngFor="let personne of personnes; let index = index;">
+              <mat-form-field appearance="fill">
+                <mat-label> Personne(s)</mat-label>
+                <mat-select [(ngModel)]="this.rencontre.idPersonnes[index]">
+                  <mat-option value="{{personne.id}}">{{personne.prenom}} {{personne.nom}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-title> Généralités </mat-card-title>
+          <mat-card-content>
+            <mat-form-field appearance="fill">
+              <mat-label>Date</mat-label>
+              <input matInput readonly value="{{this.datePipe.transform(rencontre.date,'dd/MM/yyyy')}}">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Ville</mat-label>
+              <input matInput readonly [(ngModel)]="rencontre.ville">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Lieu</mat-label>
+              <input matInput readonly [value]="this.lieu.libelle">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Type de rencontre</mat-label>
+              <input matInput readonly [(ngModel)]="this.typeRencontre.libelle">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-card class="wide">
+        <mat-card-title> Particularités </mat-card-title>
+        <mat-card-content>
+          <div style="display: flex">
+            <p style="align-self: center; margin-bottom: 0">Note : </p>
+            <span style="width: 15px"> </span>
+            <mat-slider [value]="rencontre.note" disabled  [min]="0" [max]="10" [step]="0.5" [thumbLabel]="true" [(ngModel)]="rencontre.note"></mat-slider>
+            <input matInput readonly value="{{this.rencontre.note}} / 10">
+          </div>
+          <mat-form-field id="description" appearance="fill">
+            <mat-label>Commentaire</mat-label>
+            <textarea matInput readonly [(ngModel)]="rencontre.commentaire"> </textarea>
+          </mat-form-field>
+          <!--
+          <mat-form-field appearance="fill">
+            <mat-label>Pratiques</mat-label>
+            <mat-chip-list required  [(ngModel)]="rencontre.idPratiques">
+              <mat-chip *ngFor="let pratique of pratiquesSelectionnees" (removed)="removePratique(pratique)">
+                {{pratique.libelle}}
+                <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input placeholder="Nouvelle pratique" #nouvellePratiqueInput [matAutocomplete]="auto" >
+            </mat-chip-list>
+            <mat-autocomplete (optionSelected)="selected($event)">
+              <mat-option *ngFor="let pratique of pratiques" [value]="pratique.id">{{pratique.libelle}}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          -->
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

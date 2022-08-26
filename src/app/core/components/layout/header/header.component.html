@@ -1,0 +1,14 @@
+<mat-toolbar color="accent" >
+  <mat-toolbar-row>
+    <button mat-button (click)="swap()">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <div style="text-align: center; width: 100%">
+    <span style="font-size: 24pt">Couchette</span>
+    </div>
+    Bienvenue {{username}}
+    <button mat-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

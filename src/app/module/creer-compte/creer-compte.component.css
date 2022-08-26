@@ -1,0 +1,35 @@
+.mat-card {
+  position: page;
+  left: 50%;
+  width: 30%;
+  transform: translate(-50%, 20%);
+}
+
+.input{
+  margin: 15px;
+}
+
+.mat-card-header{
+  display: flex;
+  justify-content: center;
+  color: #ff4081;
+  font-size: 2em;
+  margin: 15px;
+}
+
+.mat-form-field{
+  margin: 15px;
+  width: 80%;
+}
+
+.mat-card-actions{
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card-content{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
