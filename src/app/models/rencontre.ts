@@ -20,7 +20,7 @@ export class Rencontre {
     this.idLieu = null
     this.ville = null
     this.idTypeRencontre = null
-    this.note = null
+    this.note = 0
     this.idPratiques = []
     this.commentaire = null;
     this.personnes = []
