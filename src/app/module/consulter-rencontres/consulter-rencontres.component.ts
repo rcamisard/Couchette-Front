@@ -17,6 +17,9 @@ import {DatePipe} from "@angular/common";
 import {
   SupprimerRencontreDialogComponent
 } from "../../core/components/dialog/supprimer-rencontre-dialog/supprimer-rencontre-dialog.component";
+import {
+  SupprimerRencontreSnackbarComponent
+} from "../../core/components/snackBar/supprimer-rencontre-snackbar/supprimer-rencontre-snackbar.component";
 
 @Component({
   selector: 'app-consulter-rencontres',
@@ -67,7 +70,7 @@ export class ConsulterRencontresComponent implements OnInit {
     dialogBox.afterClosed().subscribe(res => {
       if (res['event'] == 'Delete'){
         this.deleteRencontre(res['data']);
-        this.suppressionSnackbar.openFromComponent(SupprimerPersonneSnackbarComponent, {
+        this.suppressionSnackbar.openFromComponent(SupprimerRencontreSnackbarComponent, {
           duration: 3000
         });
       }
