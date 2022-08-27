@@ -18,6 +18,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {
   AjouterRencontreSnackbarComponent
 } from "../../core/components/snackBar/ajouter-rencontre-snackbar/ajouter-rencontre-snackbar.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-ajouter-rencontre',
@@ -45,7 +46,8 @@ export class AjouterRencontreComponent implements OnInit {
               private rencontreService : RencontreService,
               private _adapter: DateAdapter<any>,
               @Inject(MAT_DATE_LOCALE) private _locale: string,
-              private ajoutSnackBar : MatSnackBar) {
+              private ajoutSnackBar : MatSnackBar,
+              private route : Router) {
     this._locale = 'fr'
     this._adapter.setLocale(this._locale)
 
@@ -62,7 +64,10 @@ export class AjouterRencontreComponent implements OnInit {
   }
 
   ajouterRencontre(): void{
-    this.rencontreService.ajoutRencontre(this.rencontre).subscribe( res => {this.ajoutSnackBar.openFromComponent(AjouterRencontreSnackbarComponent, {duration: 3000})});
+    this.rencontreService.ajoutRencontre(this.rencontre).subscribe( res => {
+      this.ajoutSnackBar.openFromComponent(AjouterRencontreSnackbarComponent, {duration: 3000})
+      this.route.navigate(['/consulterRencontres']);
+    });
   }
 
   ajouterNombrePersonne() : void{

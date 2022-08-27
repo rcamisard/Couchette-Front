@@ -8,6 +8,8 @@ import {
   AjouterPersonneSnackbarComponent
 } from "../../core/components/snackBar/ajouter-personne-snackbar/ajouter-personne-snackbar.component";
 import {Genre} from "../../models/genre";
+import {ActivatedRoute, Router, RouterModule} from "@angular/router";
+import {ConsulterRencontresComponent} from "../consulter-rencontres/consulter-rencontres.component";
 
 @Component({
   selector: 'app-ajouter-personne-snackbar',
@@ -25,7 +27,8 @@ export class AjouterPersonneComponent implements OnInit {
 
   constructor(private enumerationService : EnumerationService,
               private personneService : PersonneServiceService,
-              private ajoutSnackBar : MatSnackBar) { }
+              private ajoutSnackBar : MatSnackBar,
+              private route : Router) { }
 
   ngOnInit(): void {
     this.enumerationService.loadSignesAstro().subscribe( s => {
@@ -40,7 +43,8 @@ export class AjouterPersonneComponent implements OnInit {
     this.personneService.ajoutPersonne(this.personne).subscribe( res => {
       this.ajoutSnackBar.openFromComponent(AjouterPersonneSnackbarComponent, {
         duration: 3000
-      });
+      })
+      this.route.navigate(['/consulterPersonnes']);
     });
 
   }
