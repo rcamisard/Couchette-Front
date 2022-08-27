@@ -20,11 +20,15 @@ export class AppComponent {
 
   toggleMenu(){
     this.sidenavClose = !this.sidenavClose;
-
     this.sidenavClose?this.sideNav.close(): this.sideNav.open()
   }
 
   getUsername(){
     return sessionStorage.getItem('username') == null;
+  }
+
+  setUsername(){
+    let usr = sessionStorage.getItem('username')
+    return usr ? usr.toString() : ''
   }
 }

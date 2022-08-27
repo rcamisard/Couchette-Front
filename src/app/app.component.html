@@ -1,4 +1,4 @@
-<app-header (toggleMenu)="toggleMenu()" [hidden]="getUsername()"></app-header>
+<app-header [username]="setUsername()" (toggleMenu)="toggleMenu()" [hidden]="getUsername()"></app-header>
 <mat-sidenav-container (backdropClick)="sidenavClose=true;">
   <mat-sidenav #sidenav [mode]="sidenavMode" opened class="side-nav">
     <app-menu [hidden]="getUsername()" ></app-menu>

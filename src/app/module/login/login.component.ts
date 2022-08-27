@@ -25,10 +25,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginservice.login(this.username, this.password).subscribe(res => {
       if (res) {
-      sessionStorage.setItem('username', res.username)
-      sessionStorage.setItem('id', res.id)
-      this.invalidLogin = false
+        sessionStorage.setItem('username', res.username)
+        sessionStorage.setItem('id', res.id)
+        this.invalidLogin = false
         this.router.navigate([''])
+        document.body.style.height = 'auto';
       } else {
         this.invalidLogin = true
       }

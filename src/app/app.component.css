@@ -1,11 +1,10 @@
 .side-nav {
-  position: fixed;
   top:63px;
-  background-color:rgba(0,0,0,.1);
 }
 
 .mat-sidenav-container{
   height: 100%;
+  position: inherit !important;
 }
 .mat-toolbar{
   position: sticky;

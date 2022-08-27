@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -10,12 +10,12 @@ export class HeaderComponent implements OnInit {
 
   @Output('toggleMenu')
   toggleMenu: EventEmitter<void> = new EventEmitter()
-  // @ts-ignore
-  username : string = ''
+
+  @Input() username : string =  ''
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    console.log(sessionStorage)
     // @ts-ignore
     this.username = sessionStorage.getItem("username")
   }
@@ -27,6 +27,12 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.swap()
     sessionStorage.clear();
+    document.body.style.height = '100vh'
     this.router.navigate(['login']);
+  }
+
+  setUsername(username : string){
+    // @ts-ignore
+    this.username = sessionStorage.getItem("username");
   }
 }
