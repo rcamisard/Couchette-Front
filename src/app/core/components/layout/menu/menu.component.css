@@ -11,3 +11,8 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.mat-list-item{
+  color:dimgrey;
+  font-size: 13px;
+}
