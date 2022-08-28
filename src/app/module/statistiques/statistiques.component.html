@@ -1,0 +1,46 @@
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>dark_mode</mat-icon>
+       &nbsp;Signes astrologiques
+    </ng-template>
+    <div style="display: flex">
+    <div style="width: 40vw">
+    <h1>Répartition des signes astrologiques</h1>
+    <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="dataSignesAstros" [gradient]="gradient"
+      [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut">
+    </ngx-charts-pie-chart>
+    </div>
+    <div style="width: 40vw">
+      <h1>Répartition des élements</h1>
+      <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="dataElements" [gradient]="gradient"
+                            [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut">
+      </ngx-charts-pie-chart>
+    </div>
+    </div>
+    <div>
+        <h1>Moyenne des notes par signe astrologique</h1>
+        <ngx-charts-bar-vertical
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="dataNotesAstro"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [yScaleMax]="10"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+      </div>
+  </mat-tab>
+  <mat-tab disabled>
+  <ng-template mat-tab-label>
+    <mat-icon>event_note</mat-icon>
+    &nbsp;Performances (à venir)
+  </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
