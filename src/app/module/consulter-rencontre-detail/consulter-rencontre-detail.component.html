@@ -8,10 +8,7 @@
           <mat-card-content>
             <div *ngFor="let personne of personnes; let index = index;">
               <mat-form-field appearance="fill">
-                <mat-label> Personne(s)</mat-label>
-                <mat-select [(ngModel)]="this.rencontre.idPersonnes[index]">
-                  <mat-option value="{{personne.id}}">{{personne.prenom}} {{personne.nom}}</mat-option>
-                </mat-select>
+                <input matInput readonly value="{{personne.nom}} {{personne.prenom}}">
               </mat-form-field>
             </div>
           </mat-card-content>
