@@ -7,3 +7,9 @@
   <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+<ng-container *ngIf="loading$ | async">
+  <div class="overlay"></div>
+  <mat-progress-spinner color="accent" [mode]="'indeterminate'"></mat-progress-spinner>
+</ng-container>

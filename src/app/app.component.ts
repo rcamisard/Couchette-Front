@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {MatDrawerMode, MatSidenav} from "@angular/material/sidenav";
+import {SpinnerHandlerService} from "./service/spinner/handler/spinner-handler.service";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,10 @@ export class AppComponent {
 
   sidenavMode: MatDrawerMode = "side";
   sidenavClose: boolean = false;
+
+  loading$ = this.loader.loading$;
+
+  constructor(public loader: SpinnerHandlerService) {}
 
   toggleMenu(){
     this.sidenavClose = !this.sidenavClose;

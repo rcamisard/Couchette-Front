@@ -12,7 +12,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from "@angular/material/button"
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { MenuComponent } from './core/components/layout/menu/menu.component';
@@ -48,6 +48,8 @@ import {DatePipe} from "@angular/common";
 import { SupprimerRencontreDialogComponent } from './core/components/dialog/supprimer-rencontre-dialog/supprimer-rencontre-dialog.component';
 import { SupprimerRencontreSnackbarComponent } from './core/components/snackBar/supprimer-rencontre-snackbar/supprimer-rencontre-snackbar.component';
 import { ConsulterRencontreDetailComponent } from './module/consulter-rencontre-detail/consulter-rencontre-detail.component';
+import {SpinnerInterceptorService} from "./service/spinner/interceptor/spinner-interceptor.service";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,7 @@ import { ConsulterRencontreDetailComponent } from './module/consulter-rencontre-
     AjouterRencontreSnackbarComponent,
     SupprimerRencontreDialogComponent,
     SupprimerRencontreSnackbarComponent,
-    ConsulterRencontreDetailComponent
+    ConsulterRencontreDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,8 +102,9 @@ import { ConsulterRencontreDetailComponent } from './module/consulter-rencontre-
     MatChipsModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,   { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
