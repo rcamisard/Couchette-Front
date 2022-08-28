@@ -1,0 +1,19 @@
+.container{
+}
+
+button{
+  margin: 15px;
+  width: 5%;
+  height: 10vh;
+}
+
+
+mat-card-title{
+  color: #ff4081;
+}
+
+.mat-card{
+  width: 45%;
+  background-color: rgba(255, 64, 129,0.05);
+  margin: 15px !important;
+}

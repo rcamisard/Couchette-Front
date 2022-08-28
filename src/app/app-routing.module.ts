@@ -11,6 +11,7 @@ import {ConsulterPersonneDetailComponent} from "./module/consulter-personne-deta
 import {
   ConsulterRencontreDetailComponent
 } from "./module/consulter-rencontre-detail/consulter-rencontre-detail.component";
+import {AlphabaiseComponent} from "./module/alphabaise/alphabaise.component";
 
 const routes: Routes = [
   { path: 'consulterRencontres', component: ConsulterRencontresComponent, canActivate: [AuthGuardService] },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'ajouterPersonne', component: AjouterPersonneComponent, canActivate: [AuthGuardService]},
   { path: 'consulterPersonnes', component: ConsulterPersonnesComponent, canActivate: [AuthGuardService]},
   { path: 'consulterPersonneDetail/:id', component: ConsulterPersonneDetailComponent, canActivate: [AuthGuardService]},
-  { path: 'consulterRencontreDetail/:id', component: ConsulterRencontreDetailComponent, canActivate: [AuthGuardService]}
+  { path: 'consulterRencontreDetail/:id', component: ConsulterRencontreDetailComponent, canActivate: [AuthGuardService]},
+  { path: 'alphabaise', component: AlphabaiseComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

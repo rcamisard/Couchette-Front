@@ -1,0 +1,16 @@
+<div class = "container">
+
+  <button *ngFor="let lettreObtained of this.lettresObtained | keyvalue;" mat-raised-button [color]="lettreObtained.value? 'accent' : ''" [disableRipple]="true"> {{lettreObtained.key}} <p style="font-size: 10px;">{{this.lettresPoints.get(lettreObtained.key)}} points</p> <br/> </button>
+
+  <span style="margin-top: 15px"></span>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Quelques chiffres</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      Nombre de lettres obtenues : {{nombreLettres}} / 26 <br/>
+      Nomdre de points obtenus : {{points}} / 103
+      </mat-card-content>
+    </mat-card>
+
+</div>

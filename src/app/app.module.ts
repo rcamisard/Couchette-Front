@@ -50,6 +50,7 @@ import { SupprimerRencontreSnackbarComponent } from './core/components/snackBar/
 import { ConsulterRencontreDetailComponent } from './module/consulter-rencontre-detail/consulter-rencontre-detail.component';
 import {SpinnerInterceptorService} from "./service/spinner/interceptor/spinner-interceptor.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { AlphabaiseComponent } from './module/alphabaise/alphabaise.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +70,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     SupprimerRencontreDialogComponent,
     SupprimerRencontreSnackbarComponent,
     ConsulterRencontreDetailComponent,
+    AlphabaiseComponent,
   ],
   imports: [
     BrowserModule,
