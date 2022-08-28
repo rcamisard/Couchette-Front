@@ -19,7 +19,6 @@ import { MenuComponent } from './core/components/layout/menu/menu.component';
 import { HeaderComponent } from './core/components/layout/header/header.component';
 import {MatListModule} from "@angular/material/list";
 import {MatExpansionModule} from "@angular/material/expansion";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ConsulterRencontresComponent } from './module/consulter-rencontres/consulter-rencontres.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
@@ -53,6 +52,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AlphabaiseComponent } from './module/alphabaise/alphabaise.component';
 import { StatistiquesComponent } from './module/statistiques/statistiques.component';
 import { NgxChartsModule} from "@swimlane/ngx-charts";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -93,7 +93,6 @@ import { NgxChartsModule} from "@swimlane/ngx-charts";
     MatCheckboxModule,
     MatListModule,
     MatExpansionModule,
-    FontAwesomeModule,
     AppRoutingModule,
     RouterModule,
     MatFormFieldModule,
@@ -109,7 +108,8 @@ import { NgxChartsModule} from "@swimlane/ngx-charts";
     MatAutocompleteModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatTabsModule
   ],
   providers: [DatePipe,   { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true }],
   bootstrap: [AppComponent]
