@@ -1,0 +1,16 @@
+mat-card-title{
+  color: #ff4081;
+}
+
+.mat-card{
+  width: 45%;
+  background-color: rgba(255, 64, 129,0.05);
+  margin: 15px !important;
+}
+
+h1{
+  margin: 10px;
+  color: #ff4081;
+  font-weight: bold;
+  vertical-align: center;
+}
