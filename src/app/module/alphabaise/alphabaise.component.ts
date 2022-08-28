@@ -19,7 +19,7 @@ export class AlphabaiseComponent implements OnInit {
 
   color : string = ''
   personnes : Personne[] = []
-  
+
   constructor(private personneService : PersonneServiceService) { }
 
   ngOnInit(): void {
@@ -30,10 +30,15 @@ export class AlphabaiseComponent implements OnInit {
       this.personnes.forEach(p => {
         let initiale = p.prenom?.charAt(0).toUpperCase().toString()
         // @ts-ignore
-        this.lettresObtained.set(initiale,true)
-        this.nombreLettres ++
-        // @ts-ignore
-        this.points += this.lettresPoints.get(initiale)
+        if(!this.lettresObtained.get(initiale)) {
+
+
+          // @ts-ignore
+          this.lettresObtained.set(initiale, true)
+          this.nombreLettres++
+          // @ts-ignore
+          this.points += this.lettresPoints.get(initiale)
+        }
       })
     })
   }
