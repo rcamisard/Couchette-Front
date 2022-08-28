@@ -51,6 +51,9 @@ import { ConsulterRencontreDetailComponent } from './module/consulter-rencontre-
 import {SpinnerInterceptorService} from "./service/spinner/interceptor/spinner-interceptor.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AlphabaiseComponent } from './module/alphabaise/alphabaise.component';
+import { StatistiquesComponent } from './module/statistiques/statistiques.component';
+import { NgxChartsModule} from "@swimlane/ngx-charts";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +74,7 @@ import { AlphabaiseComponent } from './module/alphabaise/alphabaise.component';
     SupprimerRencontreSnackbarComponent,
     ConsulterRencontreDetailComponent,
     AlphabaiseComponent,
+    StatistiquesComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +109,7 @@ import { AlphabaiseComponent } from './module/alphabaise/alphabaise.component';
     MatAutocompleteModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    NgxChartsModule
   ],
   providers: [DatePipe,   { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true }],
   bootstrap: [AppComponent]
