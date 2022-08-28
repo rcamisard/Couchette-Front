@@ -32,8 +32,6 @@ export class ConsulterRencontreDetailComponent implements OnInit {
     this.rencontreService.getRencontre(this.id ? this.id : '').subscribe( res => {
       this.rencontre = res
       this.enumerationservice.loadLieux().subscribe(lieux => {
-        console.log(lieux)
-        console.log(this.rencontre.idLieu)
         // @ts-ignore
         this.lieu = lieux.find(l => l.id == this.rencontre.idLieu)? lieux.find(l => l.id == this.rencontre.idLieu) : new Lieu();
         this.enumerationservice.loadTypesRencontre().subscribe(type => {
