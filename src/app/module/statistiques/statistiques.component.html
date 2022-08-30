@@ -1,6 +1,50 @@
 <mat-tab-group mat-align-tabs="start">
   <mat-tab>
     <ng-template mat-tab-label>
+      <mat-icon>event_note</mat-icon>
+      &nbsp;Généralités
+    </ng-template>
+    <div style="display: flex">
+      <div style="width: 40vw">
+        <h1>Notes des rencontres en fonction du temps</h1>
+        <ngx-charts-line-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [xAxisLabel]="xAxisLabelNoteTemps"
+          [yAxisLabel]="yAxisLabelNoteTemps"
+          [yScaleMax]="10"
+          [yScaleMin]="0"
+          [results]="dataNotesTemps">
+        </ngx-charts-line-chart>
+      </div>
+      <div style="width: 40vw">
+        <h1>Répartition du genre des personnes</h1>
+        <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="dataGenres" [gradient]="gradient"
+                              [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut">
+        </ngx-charts-pie-chart>
+      </div>
+    </div>
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Quelques chiffres :</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          Note moyenne de toutes les rencontres : {{noteMoyenneRencontres}} / 10 <br/>
+          Nombre de rencontres effectuées : {{this.rencontres.length}} <br/>
+          <br/>
+          Nombre de personnes rencontrées : {{this.personnes.length}} <br/>
+          Âge moyen des personnes rencontrées : {{ageMoyenPersonnesRencontrees}}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
       <mat-icon>dark_mode</mat-icon>
        &nbsp;Signes astrologiques
     </ng-template>
@@ -31,16 +75,16 @@
           [showXAxisLabel]="showXAxisLabel"
           [showYAxisLabel]="showYAxisLabel"
           [yScaleMax]="10"
-          [xAxisLabel]="xAxisLabel"
-          [yAxisLabel]="yAxisLabel">
+          [xAxisLabel]="xAxisLabelNoteSignesAstro"
+          [yAxisLabel]="yAxisLabelNoteSignesAstro">
         </ngx-charts-bar-vertical>
       </div>
   </mat-tab>
   <mat-tab disabled>
-  <ng-template mat-tab-label>
-    <mat-icon>event_note</mat-icon>
-    &nbsp;Performances (à venir)
-  </ng-template>
+    <ng-template mat-tab-label>
+      <mat-icon>groups</mat-icon>
+      &nbsp;Par personne (à venir) 
+    </ng-template>
   </mat-tab>
 </mat-tab-group>
 

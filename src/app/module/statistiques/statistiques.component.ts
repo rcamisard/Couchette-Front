@@ -3,10 +3,10 @@ import {Personne} from "../../models/personne";
 import {PersonneServiceService} from "../../service/personne-service.service";
 import {EnumerationService} from "../../service/enumeration.service";
 import {SigneAstrologique} from "../../models/signeAstrologique";
-import {MatCheckboxChange} from "@angular/material/checkbox";
 import {RencontreService} from "../../service/rencontre.service";
 import {Rencontre} from "../../models/rencontre";
-import {delay} from "rxjs";
+import {DatePipe} from "@angular/common";
+import {Genre} from "../../models/genre";
 
 @Component({
   selector: 'app-statistiques',
@@ -18,9 +18,13 @@ export class StatistiquesComponent implements OnInit {
   dataSignesAstros: any[] = [];
   dataElements: any[] = [];
   dataNotesAstro: any[] = [];
-  view: any[2] = [400, 300];
+  dataNotesTemps: any[] = [];
+  dataGenres: any[] = [];
+  noteMoyenneRencontres : number = 0;
+  ageMoyenPersonnesRencontrees : number = 0;
 
   // options
+  view: any[2] = [400, 300];
   gradient: boolean = false;
   showLegend: boolean = false;
   showLabels: boolean = true;
@@ -31,27 +35,39 @@ export class StatistiquesComponent implements OnInit {
   showXAxis = true;
   showYAxis = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Signe astrologique';
   showYAxisLabel = true;
-  yAxisLabel = 'Moyenne des notes';
+  xAxisLabelNoteSignesAstro = 'Signe astrologique';
+  yAxisLabelNoteSignesAstro = 'Moyenne des notes';
+  xAxisLabelNoteTemps = 'Date';
+  yAxisLabelNoteTemps = 'Note';
+
 
   rencontres : Rencontre[] = []
   personnes : Personne[] = []
   signesAstro : SigneAstrologique[] = []
+  genres : Genre[] = []
+
   nbSignesAstro : Map<String, number> = new Map<String, number>();
   noteSignesAstro : Map<String, number> = new Map<String, number>();
   countSigneAstro : Map<String, number> = new Map<String, number>();
 
-  constructor(private personneService : PersonneServiceService, private enumerationService : EnumerationService, private rencontreService : RencontreService) { }
+  constructor(private personneService : PersonneServiceService, private enumerationService : EnumerationService, private rencontreService : RencontreService, private datePipe : DatePipe) { }
 
   ngOnInit(): void {
     this.personneService.getPersonnes().subscribe(res => {
       this.personnes = res
       this.enumerationService.loadSignesAstro().subscribe(res => {
         this.signesAstro = res
-        this.loadDataSignesAstro()
-        this.loadDataElements()
-        this.loadDataNotesMoyenneSigneAstro();
+        this.rencontreService.getRencontres().subscribe( res => {
+          this.rencontres = res;
+          this.loadDataSignesAstro()
+          this.loadDataElements()
+          this.loadDataNotesMoyenneSigneAstro();
+          this.loadNotesTemps()
+          this.loadDataGenres()
+          this.loadNoteMoyenneRencontres();
+          this.loadAgeMoyenPersonnesRencontrees()
+        })
       })
     })
   }
@@ -98,15 +114,11 @@ export class StatistiquesComponent implements OnInit {
 
   loadDataNotesMoyenneSigneAstro(){
     let tmpNotesAstro: any[] = []
-    this.rencontreService.getRencontres().subscribe(res => {
-      this.rencontres = res;
       this.rencontres.forEach( rencontre => {
         this.personneService.getPersonnesByIdRencontre(rencontre.id? rencontre.id : '').subscribe(personnes => {
           personnes.forEach( p => {
             // @ts-ignore
             let signeAstro = this.signesAstro.find(s => s.id == p.idSigneAstrologique)? this.signesAstro.find(s => s.id == p.idSigneAstrologique).libelle : 'Inconnu'
-            console.log(p.prenom)
-            console.log(signeAstro)
             if(signeAstro != 'Inconnu') {
               // @ts-ignore
               this.countSigneAstro.set(signeAstro, this.countSigneAstro.get(signeAstro) + 1);
@@ -126,7 +138,55 @@ export class StatistiquesComponent implements OnInit {
           })
         })
       })
+  }
 
+  loadNotesTemps(){
+    let tmpNotesTemps: any[] = [];
+    let tmpSeries: any[] = [];
+
+    this.rencontres.forEach( rencontre => {
+      tmpSeries.push({name : this.datePipe.transform(rencontre.date), value : rencontre.note})
     })
+    tmpNotesTemps.push({name : "Notes", series : tmpSeries})
+    this.dataNotesTemps = tmpNotesTemps;
+  }
+
+  loadDataGenres(){
+    let tmpDataGenres: any[] = []
+    this.enumerationService.loadGenres().subscribe(res => {
+      this.genres = res;
+
+      // @ts-ignore
+      let idHomme = this.genres.find(g => g.libelle == 'Homme').id
+      // @ts-ignore
+      let idFemme = this.genres.find(g => g.libelle == 'Femme').id
+      // @ts-ignore
+      let idAutre = this.genres.find(g => g.libelle == 'Autre').id
+
+      tmpDataGenres.push({name : 'Homme', value : this.personnes.filter(p => p.idGenre == idHomme).length})
+      tmpDataGenres.push({name : 'Femme', value : this.personnes.filter(p => p.idGenre == idFemme).length})
+      tmpDataGenres.push({name : 'Autre', value : this.personnes.filter(p => p.idGenre == idAutre).length})
+      this.dataGenres = tmpDataGenres;
+    })
+  }
+
+  loadNoteMoyenneRencontres(){
+    this.rencontres.forEach(rencontre => {
+      // @ts-ignore
+      this.noteMoyenneRencontres += Number(rencontre.note)
+    })
+    this.noteMoyenneRencontres /= Number(this.rencontres.length)
+  }
+
+  loadAgeMoyenPersonnesRencontrees(){
+    let lenPersonnes = this.personnes.length
+    this.personnes.forEach( personne => {
+      if (personne.age){
+        this.ageMoyenPersonnesRencontrees += Number(personne.age)
+      } else {
+        lenPersonnes --
+      }
+    })
+    this.ageMoyenPersonnesRencontrees /= Number(lenPersonnes)
   }
 }
