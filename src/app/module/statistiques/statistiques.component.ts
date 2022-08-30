@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Personne} from "../../models/personne";
 import {PersonneServiceService} from "../../service/personne-service.service";
 import {EnumerationService} from "../../service/enumeration.service";
@@ -7,6 +7,7 @@ import {RencontreService} from "../../service/rencontre.service";
 import {Rencontre} from "../../models/rencontre";
 import {DatePipe} from "@angular/common";
 import {Genre} from "../../models/genre";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @Component({
   selector: 'app-statistiques',
@@ -51,7 +52,7 @@ export class StatistiquesComponent implements OnInit {
   noteSignesAstro : Map<String, number> = new Map<String, number>();
   countSigneAstro : Map<String, number> = new Map<String, number>();
 
-  constructor(private personneService : PersonneServiceService, private enumerationService : EnumerationService, private rencontreService : RencontreService, private datePipe : DatePipe) { }
+  constructor(private personneService : PersonneServiceService, private enumerationService : EnumerationService, private rencontreService : RencontreService, private datePipe : DatePipe, @Inject(MAT_DATE_LOCALE) private _locale: string) { }
 
   ngOnInit(): void {
     this.personneService.getPersonnes().subscribe(res => {
@@ -145,7 +146,7 @@ export class StatistiquesComponent implements OnInit {
     let tmpSeries: any[] = [];
 
     this.rencontres.forEach( rencontre => {
-      tmpSeries.push({name : this.datePipe.transform(rencontre.date), value : rencontre.note})
+      tmpSeries.push({name : this.datePipe.transform(rencontre.date,'dd/MM/yyyy'), value : rencontre.note})
     })
     tmpNotesTemps.push({name : "Notes", series : tmpSeries})
     this.dataNotesTemps = tmpNotesTemps;
