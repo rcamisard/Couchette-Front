@@ -61,6 +61,8 @@ export class StatistiquesComponent implements OnInit {
         this.signesAstro = res
         this.rencontreService.getRencontres().subscribe( res => {
           this.rencontres = res;
+          // @ts-ignore
+          this.rencontres.sort((a,b) => a.date - b.date)
           this.loadDataSignesAstro()
           this.loadDataElements()
           this.loadDataNotesMoyenneSigneAstro();
@@ -176,7 +178,7 @@ export class StatistiquesComponent implements OnInit {
       // @ts-ignore
       this.noteMoyenneRencontres += Number(rencontre.note)
     })
-    this.noteMoyenneRencontres /= Number(this.rencontres.length)
+    this.noteMoyenneRencontres = Number((this.noteMoyenneRencontres / Number(this.rencontres.length)).toFixed(2))
   }
 
   loadAgeMoyenPersonnesRencontrees(){

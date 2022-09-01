@@ -31,7 +31,8 @@ export class ConsulterPersonneDetailComponent implements OnInit {
         this.personneService.getPersonne(this.id ? this.id : '').subscribe(res => {
           this.personne = res;
           // @ts-ignore
-          this.personne.signeAstrologique = this.signesAstro.find(s => s.id == this.personne.idSigneAstrologique).libelle
+          this.personne.signeAstrologique = this.personne.idSigneAstrologique? this.signesAstro.find(s => s.id == this.personne.idSigneAstrologique).libelle : 'Inconnu'
+          this.personne.age = this.personne.age? this.personne.age : 'Inconnu'
           // @ts-ignore
           this.personne.genre = this.genres.find(g => g.id == this.personne.idGenre).libelle
         })
